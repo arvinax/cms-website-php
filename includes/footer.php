@@ -2,7 +2,7 @@
 <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; changeMeLater.com 2021</p>
+                    <p>Copyright &copy;</p>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

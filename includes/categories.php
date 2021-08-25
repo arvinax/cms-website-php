@@ -1,17 +1,24 @@
 
 <div class="well">
-                    <h4>Blog Categories</h4>
+                    <h4>Categories</h4>
                     <div class="row">
                         <div class="col-lg-6">
                             <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
+
+                            <?php
+                            
+                            $query = "SELECT * FROM categories";
+                            $select_all_categories = mysqli_query($connection, $query);
+            
+                            while($row = mysqli_fetch_assoc($select_all_categories)){
+                                $cat_title = $row['cat_title'];
+            
+                                echo " <li><a href='#'> {$cat_title} </a> </li> ";
+                            }
+                            
+                            ?>
+
+
                             </ul>
                         </div>
                         

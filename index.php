@@ -51,7 +51,7 @@
                 </p>
                
                 
-                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                <img class="img-responsive" src="images/<?php echo $post_image  ?>" alt="">
                 <hr>
                 <!-- <h2>
                     <a href="#"> <?php echo $post_title ?> </a>
