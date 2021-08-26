@@ -57,10 +57,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><i class="fa fa-fw fa-desktop"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="posts_dropdown" class="collapse">
                             <li>
-                                <a href="#">View Posts</a>
+                                <a href="posts.php">View Posts</a>
                             </li>
                             <li>
-                                <a href="#">Add Posts</a>
+                                <a href="posts.php?source=add_post">Add Posts</a>
                             </li>
                         </ul>
                     </li>
@@ -69,7 +69,7 @@
                         <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
                     </li>
                     <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-page"></i> Categories </a>
+                        <a href="./categories.php"><i class="fa fa-fw fa-page"></i> Categories </a>
                     </li>
                     
                     <li>
