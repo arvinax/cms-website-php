@@ -42,15 +42,20 @@
                             echo "<tr>";
                                 echo "<td>$comment_id         </td>";
                                 echo "<td>$comment_author       </td>";
-                                echo "<td> $comment_email      </td>";
-                                echo "<td>$comment_post_id         </td>";
+                                echo "<td>$comment_email      </td>";
+                               // echo "<td>$comment_post_id         </td>";
 
                                 $p_query = "SELECT * FROM posts WHERE post_id = {$comment_post_id}" ;
                                 $related_post_query = mysqli_query($connection, $p_query);
                             
                                 while($row = mysqli_fetch_assoc($related_post_query)) {
-                                   echo  $the_post_image = $row['post_image'];
-                                    //echo "<td><img class='img-responsive' width='100' src='../images/$the_post_image'></td>";
+                                   $the_post_image = $row['post_image'];
+                                    echo "<td>
+                                    <a href='../post.php?p_id=$comment_post_id'>
+                                    <img class='img-responsive' width='100' src='../images/$the_post_image'>
+                                    </a>
+                                    
+                                    </td>";
                                 
                             }
 
@@ -73,7 +78,10 @@
                             $counter++;
                             }
                             if($counter > 0){
-                                echo "there is {$counter} comment(s) in the box";
+                                if($counter == 1){
+                                    echo "there is {$counter} comment in the box";
+                                }else
+                                echo "there are {$counter} comments in the box";
                             }else{
                                 echo "comment box is empty";
                             }

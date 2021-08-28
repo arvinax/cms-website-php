@@ -30,7 +30,7 @@
 
 
             <h1 class="page-header">
-                Posts 
+                Comments control 
                 <small>Justim</small>
             </h1>
 
