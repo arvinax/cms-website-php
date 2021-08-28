@@ -5,12 +5,12 @@
    if(isset($_POST['create_post'])) {
    
             $post_title        = escape($_POST['title']);
-            $post_author         = escape($_POST['post_user']);
+            $post_user         = escape($_POST['post_user']);
             $post_category_id  = escape($_POST['post_category']);
             $post_status       = escape($_POST['post_status']);
     
             $post_image        = escape($_FILES['image']['name']);
-            $post_image_temp   = escape($_FILES['image']['tmp_name']);
+            $post_image_temp   = $_FILES['image']['tmp_name'];
     
     
             $post_tags         = escape($_POST['post_tags']);
@@ -23,7 +23,7 @@
        
       $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date,post_image,post_content,post_tag,post_status) ";
              
-      $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') "; 
+      $query .= "VALUES({$post_category_id},'{$post_title}','{$post_user}',now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') "; 
              
       $create_post_query = mysqli_query($connection, $query);  
           
@@ -46,16 +46,13 @@
     <form action="" method="post" enctype="multipart/form-data">    
      
      
-      <div class="form-group ">
+      <div class="form-group">
          <label for="title">TITLE</label>
           <input type="text" class="form-control" name="title">
-       
       </div>
-      
 
-      <label for="category">CATEGORY</label>
-         <div class="form-group ">
-       
+         <div class="form-group">
+       <label for="category">CATEGORY</label>
        <select name="post_category" id="">
            
 <?php
@@ -84,9 +81,8 @@
       </div>
 
 
-      <label for="users">USERNAME</label>
-       <div class="form-group ">
-       
+       <div class="form-group">
+       <label for="users">USER</label>
        <select name="post_user" id="">
            
 <?php
@@ -128,19 +124,19 @@
        <div class="form-group">
          <select name="post_status" id="">
              <option value="draft">Post Status</option>
-             <option value="published">Published</option>
-             <option value="draft">Draft</option>
+             <option value="published">published</option>
+             <option value="draft">draft</option>
          </select>
       </div>
       
       
-      <label for="post_image">IMAGE</label>
+      
     <div class="form-group">
-        
+         <label for="post_image">IMAGE</label>
           <input type="file"  name="image">
       </div>
 
-      <div class="form-group ">
+      <div class="form-group">
          <label for="post_tags">TAGS</label>
           <input type="text" class="form-control" name="post_tags">
       </div>

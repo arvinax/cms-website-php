@@ -45,7 +45,7 @@
           <input type="text" class="form-control" name="cat_title">
       </div>
        <div class="form-group">
-          <input class="btn btn-primary" type="submit" name="submit" value="Add Category">
+          <input class="btn btn-primary" type="submit" name="submit" value="Add">
       </div>
 
     </form>

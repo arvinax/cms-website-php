@@ -39,7 +39,20 @@
                                 echo "<td>$post_id          </td>";
                                 echo "<td>$post_title       </td>";
                                 echo "<td>$post_author      </td>";
-                                echo "<td>$post_category_id </td>";
+
+
+                                $query = "SELECT * FROM categories WHERE cat_id = {$post_category_id}";
+                                $select_cat = mysqli_query($connection, $query);
+
+                                while($row = mysqli_fetch_assoc($select_cat)){
+                                    $cat_title = $row['cat_title'];
+
+                                    echo "<td>$cat_title</td>";
+                                }
+                                
+
+
+
                                 echo "<td>$post_status      </td>";
 
             echo "<td><img class='img-responsive' width='100' src='../images/$post_image'></td>";
@@ -47,7 +60,9 @@
                                 echo "<td>$post_comment_count</td>";
                                 echo "<td>$post_tag         </td>";
                                 echo "<td>$post_date        </td>";
-                                echo "<td><a href='posts.php?delete={$post_id}'>DELETE</a></td>";
+                                echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>EDIT</a></td>";
+                                echo "<td><a href='posts.php?deleted={$post_id}'>DELETE</a></td>";
+                                
                             echo "</tr>";
                             }
 
@@ -57,11 +72,11 @@
                         </table>
 
                         <?php 
-                            if(isset($_GET['delete'])){
-                                    $the_post_id = $_GET['delete'];
-                                    $query = "DELETE FROM posts WHERE post_is = {$the_post_id}";
+                            if(isset($_GET['deleted'])){
+                                    $the_post_id = $_GET['deleted'];
+                                    $query = "DELETE FROM posts WHERE post_id = {$the_post_id}";
                                     $delete_post_query = mysqli_query($connection, $query);
-                                    header("Location: view_all_posts.php");
+                                    header("Location: ./posts.php");
                             }
                         ?>
                         
