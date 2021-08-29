@@ -9,8 +9,9 @@
                                     <th>POST</th>
                                     <th>CONTENT</th>
                                     
-                                    <th>STATUS</th>
+                                    
                                     <TH>DATE</TH>
+                                    <th>STATUS</th>
                                 </tr>
                             </thead>
                         
@@ -45,6 +46,7 @@
                                 echo "<td>$comment_email      </td>";
                                // echo "<td>$comment_post_id         </td>";
 
+
                                 $p_query = "SELECT * FROM posts WHERE post_id = {$comment_post_id}" ;
                                 $related_post_query = mysqli_query($connection, $p_query);
                             
@@ -66,11 +68,17 @@
 
            
 
-                                echo "<td>$comment_status</td>";
+                                
                                 echo "<td>$comment_date        </td>";
+                                echo "<td>$comment_status</td>";
+                                if($comment_status == 'approved'){
+                                    echo "<td><a class='btn btn-warning' href='comments.php?unapprove=$comment_id'>UNAPPROVE</a></td>";
+                                }else{
+                                    echo "<td><a class='btn btn-success' href='comments.php?approve=$comment_id'>APPROVE</a></td>";
+                                }
                               
-                                echo "<td><a class='btn btn-success' href='comments.php?approve=$comment_id'>APPROVE</a></td>";
-                                echo "<td><a class='btn btn-warning' href='comments.php?unapprove=$comment_id'>UNAPPROVE</a></td>";
+                                
+                                
                                 echo "<td><a class='btn btn-danger' href='comments.php?deleted=$comment_id'>DELETE</a></td>";
                                 
                                 
@@ -79,11 +87,12 @@
                             }
                             if($counter > 0){
                                 if($counter == 1){
-                                    echo "<h3>there is {$counter} comment in the box</h3>";
+                                    echo "<h3>there is {$counter} comment in the box</h3> <hr>";
+                                    
                                 }else
-                                echo "<h3>there are {$counter} comments in the box</h3>";
+                                echo "<h3>there are {$counter} comments in the box</h3> <hr>";
                             }else{
-                                echo "<h1>comment box is empty</h1>";
+                                echo "<h1>comment box is empty</h1> <hr>";
                             }
 
                         ?>
