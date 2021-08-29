@@ -1,4 +1,6 @@
-
+            <h1 class="">
+                <small>Add new post</small>
+            </h1>
 <?php
    
 

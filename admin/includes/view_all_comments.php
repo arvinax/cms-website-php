@@ -69,9 +69,9 @@
                                 echo "<td>$comment_status</td>";
                                 echo "<td>$comment_date        </td>";
                               
-                                echo "<td><a href='comments.php?approve=$comment_id'>APPROVE</a></td>";
-                                echo "<td><a href='comments.php?unapprove=$comment_id'>UNAPPROVE</a></td>";
-                                echo "<td><a href='comments.php?deleted=$comment_id'>DELETE</a></td>";
+                                echo "<td><a class='btn btn-success' href='comments.php?approve=$comment_id'>APPROVE</a></td>";
+                                echo "<td><a class='btn btn-warning' href='comments.php?unapprove=$comment_id'>UNAPPROVE</a></td>";
+                                echo "<td><a class='btn btn-danger' href='comments.php?deleted=$comment_id'>DELETE</a></td>";
                                 
                                 
                             echo "</tr>";
@@ -79,11 +79,11 @@
                             }
                             if($counter > 0){
                                 if($counter == 1){
-                                    echo "there is {$counter} comment in the box";
+                                    echo "<h3>there is {$counter} comment in the box</h3>";
                                 }else
-                                echo "there are {$counter} comments in the box";
+                                echo "<h3>there are {$counter} comments in the box</h3>";
                             }else{
-                                echo "comment box is empty";
+                                echo "<h1>comment box is empty</h1>";
                             }
 
                         ?>

@@ -25,6 +25,9 @@
                             $query = "SELECT * FROM posts";
                             $select_posts = mysqli_query($connection,$query);  
 
+                            $counter = 0;
+                            
+
                             while($row = mysqli_fetch_assoc($select_posts)) {
                             $post_id = $row['post_id'];
                             $post_title = $row['post_title'];
@@ -36,6 +39,10 @@
                             $post_category_id = $row['post_category_id'];
                             $post_comment_count = $row['post_comment_count'];
                             $post_tag =  $row['post_tag'];
+
+                            $counter++;
+                            
+
 
 
 
@@ -71,6 +78,11 @@
 
                                 
                             echo "</tr>";
+                            }
+                            if($counter > 0){
+                             echo "<h3>number of posts: {$counter}</h3>";
+                            }else{
+                                echo "<h3>no user posted yet...!<h3>";
                             }
 
                         ?>
