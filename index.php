@@ -29,7 +29,7 @@
                 <!-- First Blog Post -->
 
                 <?php 
-                $query = "SELECT * FROM posts";
+                $query = "SELECT * FROM posts where post_status = 'published'";
                 $select_all_posts = mysqli_query($connection, $query);
                 // if($select_all_posts){
                 //     echo "selected";

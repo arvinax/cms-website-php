@@ -1,6 +1,6 @@
                 
                         <table class="table table-hover">
-                            <thead>
+                            <thead >
                                 <tr>
                                     <th>ID</th>
                                     <th>TITLE</th>
@@ -11,6 +11,10 @@
                                     <th>COMMENTS</th>
                                     <th>TAGS</th>
                                     <TH>DATE</TH>
+
+
+                                
+                                    
                                 </tr>
                             </thead>
                         
@@ -60,8 +64,11 @@
                                 echo "<td>$post_comment_count</td>";
                                 echo "<td>$post_tag         </td>";
                                 echo "<td>$post_date        </td>";
-                                echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>EDIT</a></td>";
-                                echo "<td><a href='posts.php?deleted={$post_id}'>DELETE</a></td>";
+                                echo "<td><a class='btn btn-success' href='posts.php?published={$post_id}'>PUBLISH</a></td>";
+                                echo "<td><a class='btn btn-warning' href='posts.php?draft={$post_id}'>DRAFT</a></td>";
+                                echo "<td><a class='btn btn-primary' href='posts.php?source=edit_post&p_id={$post_id}'>EDIT</a></td>";
+                                echo "<td><a class='btn btn-danger' href='posts.php?deleted={$post_id}'>DELETE</a></td>";
+
                                 
                             echo "</tr>";
                             }
@@ -76,6 +83,25 @@
                                     $the_post_id = $_GET['deleted'];
                                     $query = "DELETE FROM posts WHERE post_id = {$the_post_id}";
                                     $delete_post_query = mysqli_query($connection, $query);
+                                    header("Location: ./posts.php");
+                            }
+                        ?>
+
+
+                        <?php 
+                            if(isset($_GET['published'])){
+                                    $the_post_id = $_GET['published'];
+                                    $query = "UPDATE posts SET post_status = 'published' WHERE post_id = {$the_post_id}";
+                                    $publish_post_query = mysqli_query($connection, $query);
+                                    header("Location: ./posts.php");
+                            }
+                        ?>
+
+<?php 
+                            if(isset($_GET['draft'])){
+                                     $the_post_id = $_GET['draft'];
+                                    $query = "UPDATE posts SET post_status = 'draft' WHERE post_id = {$the_post_id}";
+                                    $publish_post_query = mysqli_query($connection, $query);
                                     header("Location: ./posts.php");
                             }
                         ?>

@@ -17,11 +17,12 @@
             $post_content      = escape($_POST['post_content']);
             $post_date         = escape(date('d-m-y'));
 
+
        
         move_uploaded_file($post_image_temp, "../images/$post_image" );
        
        
-      $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date,post_image,post_content,post_tag,post_status) ";
+      $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date,post_image,post_content,post_tag, post_status) ";
              
       $query .= "VALUES({$post_category_id},'{$post_title}','{$post_user}',now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') "; 
              
@@ -124,8 +125,6 @@
        <div class="form-group">
          <select name="post_status" id="">
              <option value="draft">Post Status</option>
-             <option value="published">published</option>
-             <option value="draft">draft</option>
          </select>
       </div>
       
