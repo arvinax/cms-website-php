@@ -128,66 +128,50 @@
 
                 <!-- Posted Comments -->
 
-                <!-- Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div>
+                         <?php
+                            $the_post_id =  $_GET['p_id'];
+                            $query = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id} 
+                            AND comment_status = 'approved' ORDER BY comment_id DESC";
+                            $show_comments = mysqli_query($connection, $query);
 
-                <!-- Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        <!-- Nested Comment -->
+                            while($row = mysqli_fetch_assoc($show_comments)) {
+                          
+                            $comment_author = $row['comment_author'];
+                            $comment_email = $row['comment_email'];
+                            $comment_content = $row['comment_content'];
+                            $comment_date = $row['comment_date'];
+                            ?>
+
+
+
                         <div class="media">
                             <a class="pull-left" href="#">
-                                <img class="media-object" src="http://placehold.it/64x64" alt="">
+                                <img src="" alt="">
                             </a>
                             <div class="media-body">
-                                <h4 class="media-heading">Nested Start Bootstrap
-                                    <small>August 25, 2014 at 9:30 PM</small>
+                                <h4 class="media-heading"><?php echo $comment_author; ?>
+                                    
                                 </h4>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            </div>
+                                <?php echo $comment_content; ?>
+                                <small class="pull-right"><?php echo $comment_date; ?></small>
+                               </div>
                         </div>
-                        <!-- End Nested Comment -->
-                    </div>
-                </div>
+                        <hr>
 
 
 
 
-               
+                            <?php } ?>
 
-               
+                            
 
+
+
+
+                <!-- Comment -->
                 
 
-               
-
-                <!-- Pager -->
-                <ul class="pager">
-                    <li class="previous">
-                        <a href="#">&larr; Older</a>
-                    </li>
-                    <li class="next">
-                        <a href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
-
+                <!-- Comment -->
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
