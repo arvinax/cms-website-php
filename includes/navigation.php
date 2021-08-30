@@ -29,12 +29,58 @@
 
             
                     ?>
-                    <li>
-                        <a href="./admin/index.php">Admin</a>
-                    </li>
+                    <?php 
+                    if(isset($_SESSION['user_role'])){
+                        if($_SESSION['user_role'] == 'admin'){
+                        echo "<li><a href='./admin/index.php'>Admin</a></li>";
+                        }else{
+                            // echo "<li><a href='#'> {$_SESSION['username']} </a></li>";
+                            echo "
+                            <li class='dropdown navbar-right'>
+                                <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-user'></i>{$_SESSION['username']}<b class='caret'></b></a>
+                                <ul class='dropdown-menu'>
+                                    <li>
+                                        <a href='./admin/profile.php'><i class='fa fa-fw fa-user'></i> Profile </a>
+                                    </li>
+                                    <li class='divider'></li>
+                                    <li>
+                                        <a href='includes/logout.php'><i class='fa fa-fw fa-power-off'></i> Log Out </a>
+                                    </li>
+                                </ul>
+                            </li>";
+                            
+                        }
+                    }else{
+                        echo "<li><a href='includes/login_page.html'>log in</a></li>";
+                        echo "<li><a href='includes/login_page.html'>sign up</a></li>";
+                    }
+                    ?>
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+                    
+
+                   
+                        
+                   
                 </ul>
+               
             </div>
+            
             <!-- /.navbar-collapse -->
         </div>
+        
         <!-- /.container -->
     </nav>

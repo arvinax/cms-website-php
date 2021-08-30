@@ -62,7 +62,7 @@
                 <a class="" href="#">More...</a>
                <br>
                <br>
-                <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
+                <p class="pull-right"><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
                 <hr>
 
 

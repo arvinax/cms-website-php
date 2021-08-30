@@ -22,6 +22,35 @@
 
 
 
+
+
+<!-- log in form-->
+
+<?php 
+if(!isset($_SESSION['user_role'])){
+    echo "<div class='well'>
+    <h4>Login</h4>
+    <form action='includes/login.php' method='post'>
+        <div class='form-group'>
+            <input name='username' type='text' class='form-control' placeholder='Enter username'>
+        </div> 
+        
+        <div class='input-group'>
+            <input name='password' type='password' class='form-control' placeholder='Enter password'>
+         
+        <span class='input-group-btn'>
+            <button class='btn btn-primary' name='login' type='submit'>log in</button>
+
+        </span>
+        </div>
+
+    </form>
+</div>";
+   
+}
+?>
+
+
 <!-- Blog Categories Well -->
 <?php include "includes/categories.php" ?>
 

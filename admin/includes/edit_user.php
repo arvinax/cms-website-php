@@ -79,7 +79,8 @@
 
        <div class="form-group">
          <select name="post_status" id="">
-             <option value="subscriber">ROLE</option>
+             <option value="">ROLE</option>
+             
          </select>
       </div>
       
