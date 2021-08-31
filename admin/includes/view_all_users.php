@@ -18,11 +18,11 @@
                         <?php 
                         global $connection;
                             $query = "SELECT * FROM users";
-                            $select_posts = mysqli_query($connection,$query);  
+                            $select_users = mysqli_query($connection,$query);  
 
-                            $counter = 0;
+                            
 
-                            while($row = mysqli_fetch_assoc($select_posts)) {
+                            while($row = mysqli_fetch_assoc($select_users)) {
                             $user_id = $row['user_id'];
                             $username = $row['username'];
                             $user_firstname = $row['user_firstname'];
@@ -74,8 +74,9 @@
                                 
                                 
                             echo "</tr>";
-                            $counter++;
+                            
                             }
+                            $counter = mysqli_num_rows($select_users);
                             if($counter > 0){
                                 if($counter == 1){
                                     echo "{$counter} user exist <hr>";

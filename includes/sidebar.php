@@ -65,7 +65,25 @@ if(!isset($_SESSION['user_role'])){
        aliquam repellat tempore quos aspernatur vero.</p>
 </div>
 
+
+
+
+
+<?php include "signuporlogin.php" ?>
+
+
+
+
+
+<!-- end of sidebar container -->
 </div>
 
 </div>
 <!-- /.row -->
+
+
+
+
+
+
+

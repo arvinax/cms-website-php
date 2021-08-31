@@ -22,7 +22,7 @@
                             $query = "SELECT * FROM comments";
                             $select_comments = mysqli_query($connection,$query);  
 
-                            $counter = 0;
+                           
 
                             while($row = mysqli_fetch_assoc($select_comments)) {
                             $comment_id = $row['comment_id'];
@@ -33,11 +33,7 @@
                             $comment_status = $row['comment_status'];
                             $comment_date = $row['comment_date'];
 
-                           
-                           
-
-                       
-
+            
 
 
                             echo "<tr class='responsive'>";
@@ -83,8 +79,9 @@
                                 
                                 
                             echo "</tr>";
-                            $counter++;
+                          
                             }
+                            $counter = mysqli_num_rows($select_comments);
                             if($counter > 0){
                                 if($counter == 1){
                                     echo "<h3>there is {$counter} comment in the box</h3> <hr>";

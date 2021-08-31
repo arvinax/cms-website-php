@@ -27,7 +27,7 @@
                             $query = "SELECT * FROM posts";
                             $select_posts = mysqli_query($connection,$query);  
 
-                            $counter = 0;
+                            
                             
 
                             while($row = mysqli_fetch_assoc($select_posts)) {
@@ -42,7 +42,7 @@
                             $post_comment_count = $row['post_comment_count'];
                             $post_tag =  $row['post_tag'];
 
-                            $counter++;
+                           
                             
 
 
@@ -100,6 +100,7 @@
                                 
                             echo "</tr>";
                             }
+                            $counter = mysqli_num_rows($select_posts);
                             if($counter > 0){
                              echo "<h3>number of posts: {$counter}</h3> <hr>";
                             }else{
