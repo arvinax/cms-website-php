@@ -52,8 +52,20 @@ if(!isset($_SESSION['user_role'])){
 
 
 <!-- Blog Categories Well -->
-<?php include "includes/categories.php" ?>
+<?php  include "includes/categories.php"; ?>
 
+
+
+<!-- sign in or sign up pop up from -->
+
+<?php 
+
+if(!isset($_SESSION['user_role'])){
+    include "signuporlogin.php" ;
+}
+
+
+?>
 
 
 
@@ -69,7 +81,7 @@ if(!isset($_SESSION['user_role'])){
 
 
 
-<?php include "signuporlogin.php" ?>
+
 
 
 

@@ -38,41 +38,64 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li>
-                        <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                    </li>
+                    <?php
+                    if(isset($_SESSION['user_role'])){
+                        if($_SESSION['user_role'] == 'admin'){
 
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#users_dropdown"><i class="fa fa-fw fa-desktop"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="users_dropdown" class="collapse">
+
+                            echo 
+                            "
                             <li>
-                                <a href="./users.php">View Users</a>
-                            </li>
-                            <li>
-                                <a href="./users.php?source=add_user">Add Users</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><i class="fa fa-fw fa-desktop"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="posts_dropdown" class="collapse">
-                            <li>
-                                <a href="posts.php">View Posts</a>
-                            </li>
-                            <li>
-                                <a href="posts.php?source=add_post">Add Posts</a>
-                            </li>
-                        </ul>
-                    </li>
+                            <a href='index.php'><i class='fa fa-fw fa-dashboard'></i> Dashboard</a>
+                        </li>
+    
+                        <li>
+                            <a href='javascript:;' data-toggle='collapse' data-target='#users_dropdown'><i class='	fa fa-at' > </i> Users <i class='fa fa-fw fa-caret-down'></i></a>
+                            <ul id='users_dropdown' class='collapse'>
+                                <li>
+                                    <a href='./users.php'>View Users</a>
+                                </li>
+                                <li>
+                                    <a href='./users.php?source=add_user'>Add Users</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href='javascript:;' data-toggle='collapse' data-target='#posts_dropdown'><i class='fa fa-fw fa-desktop'></i> Posts <i class='fa fa-fw fa-caret-down'></i></a>
+                            <ul id='posts_dropdown' class='collapse'>
+                                <li>
+                                    <a href='posts.php'>View Posts</a>
+                                </li>
+                                <li>
+                                    <a href='posts.php?source=add_post'>Add Posts</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                       
+                        <li>
+                            <a href=''./categories.php'><i class='fa fa-fw fa-page'></i> Categories </a>
+                        </li>
+                        
+                        <li>
+                            <a href='./comments.php'><i class='fa fa-fw fa-desktop'></i> Comments </a>
+                        </li>
+                        ";
+
+
+
+
+
+
+
+
+
+                        }
+                    }
                     
-                   
-                    <li>
-                        <a href="./categories.php"><i class="fa fa-fw fa-page"></i> Categories </a>
-                    </li>
                     
-                    <li>
-                        <a href="./comments.php"><i class="fa fa-fw fa-desktop"></i> Comments </a>
-                    </li>
+                    ?>
+               
 
                     <li>
                         <a href="./profile.php"><i class="fa fa-fw fa-desktop"></i> Profile</a>

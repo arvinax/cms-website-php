@@ -52,7 +52,7 @@
                         }
                     }else{
                         echo "<li><a href='includes/login_page.html'>log in</a></li>";
-                        echo "<li><a href='includes/login_page.html'>sign up</a></li>";
+                        echo "<li><a href='includes/signup_page.html'>sign up</a></li>";
                     }
                     ?>
                     

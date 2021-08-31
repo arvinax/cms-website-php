@@ -1,8 +1,11 @@
+
+<?php include "db.php"; ?>
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Popup Login &amp; Signup with jQuery</title>
+  <title></title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic'>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'>
@@ -29,7 +32,7 @@
         h1 {
             text-align: center;
             margin-bottom: 0;
-            margin-top: 60px;
+            margin-top: 10px;
         }
         
         #lean_overlay {
@@ -283,6 +286,7 @@
 <!-- partial:index.partial.html -->
 
 <div class="well">
+    <h1>Sign up Or Log in</h1>
      
         <a id="modal_trigger" href="#modal" class="btnl">Login/signup</a>
     
@@ -324,23 +328,24 @@
     
                  <!-- Username & Password Login form  -->
                 <div class="user_login">
-                    <form>
-                        <label>Email / Username</label>
-                        <input type="text" />
+                    <form action="includes/login.php" method="post">
+                        
+                        <input type="text" name="username" placeholder="Username"/>
                         <br />
     
-                        <label>Password</label>
-                        <input type="password" />
+                        
+                        <input type="password" name="password" placeholder="Password"/>
                         <br />
     
                         <div class="checkbox">
-                            <input id="remember" type="checkbox" />
+                            <input id="remember" type="checkbox" class="btn-primary"/>
                             <label for="remember">Remember me on this computer</label>
                         </div>
     
                         <div class="action_btns">
                             <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-                            <div class="one_half last"><a href="#" class="btn btn_red">Login</a></div>
+                            <!-- <div class="one_half last"><a href="#" class="btn btn_red">Login</a></div> -->
+                            <div class="one_half last"><button name="login" type="submit" class="btn btn_red">Login</button></div>
                         </div>
                     </form>
     
@@ -349,35 +354,35 @@
     
                <!-- register form -->
                 <div class="user_register">
-                    <form>
-                        <label>Username</label>
-                        <input type="text" />
+                    <form method="post" action="includes/signup.php">
+                       
+                        <input type="text" name="user_name" placeholder="username"/>
                         <br />
 
                         <label>First Name</label>
-                        <input type="text" />
+                        <input type="text" name="user_firstname" placeholder="firstname"/>
                         <br />
 
                         <label>Last Name</label>
-                        <input type="text" />
+                        <input type="text" name="user_lastname" placeholder="lastname"/>
                         <br />
     
                         <label>Email Address</label>
-                        <input type="email" />
+                        <input type="email" name="user_email" placeholder="email address"/>
                         <br />
     
                         <label>Password</label>
-                        <input type="password" />
+                        <input type="password" name="user_password" placeholder="password"/>
                         <br />
     
                         <div class="checkbox">
-                            <input id="send_updates" type="checkbox" />
+                            <input id="send_updates" style="color: black;" type="checkbox" />
                             <label for="send_updates">Send me occasional email updates</label>
                         </div>
     
                         <div class="action_btns">
                             <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-                            <div class="one_half last"><a href="#" class="btn btn_red">Register</a></div>
+                            <div class="one_half last"><button type="submit" name="sign_up" class="btn btn_red">Register</button></div>
                         </div>
                     </form>
                 </div>

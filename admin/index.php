@@ -1,5 +1,24 @@
 <?php include "includes/admin_header.php" ?>
 
+
+
+<?php 
+
+if(!isset($_SESSION['username'])){
+    header("Location: ../index.php");
+}elseif(isset($_SESSION['user_role'])){
+    if($_SESSION['user_role'] !== 'admin'){
+        header("Location: ../index.php");
+    }
+}
+
+
+?>
+
+
+
+
+
 <body>
 
     <div id="wrapper">

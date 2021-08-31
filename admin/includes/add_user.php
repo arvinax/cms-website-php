@@ -7,6 +7,8 @@
 
    if(isset($_POST['add_user'])) {
 
+    global $connection;
+
     $username = $_POST['user_name'];
     $user_firstname = $_POST['user_firstname'];
     $user_password = $_POST['user_password'];
