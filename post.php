@@ -22,8 +22,13 @@
             <div class="col-md-8">
 
                 <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
+                
+                    <small><?php if($_SESSION['username']){
+                        $the_name = $_SESSION['username'];
+                        echo "view post as {$the_name}";
+                    }else{
+                        echo "view post anonymously";
+                    } ?></small>
                 </h1>
 
                 <!-- First Blog Post -->
@@ -48,14 +53,34 @@
                 $post_image	 = $row['post_image'];
                 $post_content= $row['post_content'];
                 $post_date = $row['post_date'];
-                
-
                 ?>
 
-                
-                <p class="lead">
-                  <a href="index.php"><?php echo $post_author ?></a>
-                </p>
+
+
+
+
+
+    <?php 
+$query = "SELECT * FROM users WHERE username = '{$post_author}'";
+$select_user = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($select_user)){
+    $user_image = $row['user_image'];
+    echo "<div> <img class='img-responsive'  
+    style='vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; 
+    float: left;' src='images/$user_image'>  </div>";
+  
+     }
+    ?>
+ 
+           
+                  <p class="lead">
+                     <a href="index.php" ><?php echo $post_author ?></a>
+                  </p>
+
                
                 
                 <img class="img-responsive" src="images/<?php echo $post_image  ?>" alt="">
@@ -89,7 +114,7 @@
 
                     $the_post_id =   $_GET['p_id'];
                     
-                    $comment_author = $_POST['comment_author'];
+                    $comment_author = $_SESSION['username'];
                     $comment_email = $_POST['comment_email'];
                     $comment_content = $_POST['comment_content'];
 
@@ -105,6 +130,12 @@
                     $query .= "WHERE post_id = {$the_post_id}";
 
                     $update_comment_count_query = mysqli_query($connection, $query);
+
+                    echo "<h1>
+                           <small>Your comment will be published after admin aapproval. good luck!</small>
+                          </h1>";
+
+                        
                    
 
                 }
@@ -115,9 +146,15 @@
                 <div class="well">
                     <h4>Leave a Comment:</h4>
                     <form role="form" action="" method="post">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="comment_author" placeholder="username">
-                        </div>
+
+                    <?php if(!isset($_SESSION['username'])){
+                        echo "  <div class='form-group'>
+                        <input type='text' class='form-control' name='comment_author' placeholder='username'>
+                    </div>";
+                      
+                    }?>
+
+                        
                         <div class="form-group">
                             <input type="email" class="form-control" name="comment_email" placeholder="email">
                         </div>
@@ -125,7 +162,17 @@
                         <div class="form-group">
                             <textarea class="form-control" name="comment_content" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" name="create_comment">Submit</button>
+                       
+                     <?php if(isset($_SESSION['username'])){
+
+                        echo "<button type='submit' class='btn btn-primary' name='create_comment'>Submit</button>";
+                     }else{
+                        echo "<button class='btn btn-primary'>Please login in order to leave a comment.</button>";
+                     }
+                     ?>
+
+
+                        
                     </form>
                
                 </div>
@@ -155,12 +202,42 @@
                                 <img src="" alt="">
                             </a>
                             <div class="media-body">
-                                <h4 class="media-heading"><?php echo $comment_author; ?>
+
+
+
+
+
+                            <?php 
+$query = "SELECT * FROM users WHERE username = '{$comment_author}'";
+$select_user = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($select_user)){
+    $user_image = $row['user_image'];
+    echo "<div> <img class='img-responsive'  
+    style='vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; 
+    float: left;' src='images/$user_image'>  </div>";
+  
+}
+
+
+?>
+
+
+
+
+
+
+
+                                <h4 class="media-heading" style="font-family: monaco;"><?php echo $comment_author; ?>
                                     
                                 </h4>
+                                </div>
                                 <?php echo $comment_content; ?>
                                 <small class="pull-right"><?php echo $comment_date; ?></small>
-                               </div>
+                               
                         </div>
                         <hr>
 

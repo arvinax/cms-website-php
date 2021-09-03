@@ -2,18 +2,6 @@
 
 
 
-<?php 
-
-if(!isset($_SESSION['username'])){
-    header("Location: ../index.php");
-}elseif(isset($_SESSION['user_role'])){
-    if($_SESSION['user_role'] !== 'admin'){
-        header("Location: ../index.php");
-    }
-}
-
-
-?>
 
 
 
@@ -34,7 +22,9 @@ if(!isset($_SESSION['username'])){
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Welcome to admin room
+                           
                             <small><?php echo $_SESSION['username'] ?></small>
+                            
                         </h1>
                         <ol class="breadcrumb">
                             <li>

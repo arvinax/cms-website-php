@@ -15,14 +15,14 @@
     $user_lastname = $_POST['user_lastname'];
     $user_email = $_POST['user_email'];
     $user_role = 'subscriber';
-    $user_image = 'some image';
+   
 
    
      //move_uploaded_file($post_image_temp, "../images/$post_image" );
        
-      $query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email,user_image, user_role) ";
+      $query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_role) ";
              
-      $query .= "VALUES('{$username}','{$user_password}','{$user_firstname}','{$user_lastname}','{$user_email}','{$user_image}', '{$user_role}') "; 
+      $query .= "VALUES('{$username}','{$user_password}','{$user_firstname}','{$user_lastname}','{$user_email}', '{$user_role}') "; 
              
       $create_user_query = mysqli_query($connection, $query);  
 

@@ -3,9 +3,13 @@
                 <small>Add new user</small>
             </h1>
 <?php
+ob_start();
+?>
+
+<?php
    
 
-   if(isset($_POST['add_user'])) {
+   if(isset($_POST['make_user'])) {
 
     global $connection;
 
@@ -14,12 +18,40 @@
     $user_password = $_POST['user_password'];
     $user_lastname = $_POST['user_lastname'];
     $user_email = $_POST['user_email'];
+    $user_image_temp   = escape($_FILES['image']['tmp_name']);
+    $user_image        = escape($_FILES['image']['name']);
+    
+   
     $user_role = 'subscriber';
-    $user_image = 'some image';
 
+    
+   
+   
 
        
-        //move_uploaded_file($post_image_temp, "../images/$post_image" );
+    move_uploaded_file($user_image_temp, "../images/$user_image" );
+
+    if(is_dir($user_image_temp)){
+        echo "its a fuckin folder";
+    }
+    
+
+
+
+
+
+    
+    
+  
+
+
+
+
+
+
+
+
+
        
        
       $query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email,user_image, user_role) ";
@@ -34,6 +66,8 @@
 
 
       echo "<p class='bg-success'>User Created. <a href='./users.php'>View users </a></p>";
+      echo $user_image;
+      echo $user_image_temp;
        
 
 
@@ -77,10 +111,10 @@
       
       
       
-    <!-- <div class="form-group">
-         <label for="post_image">IMAGE</label>
+    <div class="form-group">
+         <label for="user_image">IMAGE</label>
           <input type="file"  name="image">
-      </div> -->
+      </div>
 
 
       <div class="form-group">
@@ -91,7 +125,7 @@
       
 
        <div class="form-group">
-          <input class="btn btn-primary" type="submit" name="add_user" value="SAVE">
+          <input class="btn btn-primary" type="submit" name="make_user" value="SAVE">
       </div>
 
 

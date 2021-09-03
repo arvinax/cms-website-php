@@ -31,7 +31,7 @@
 
             <h1 class="page-header">
                 Comments control 
-                <small>Justim</small>
+                <small><?php echo $_SESSION['username'] ?></small>
             </h1>
 
 

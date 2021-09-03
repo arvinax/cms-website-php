@@ -21,8 +21,8 @@
             <!-- Blog Entries Column -->
             <div class="col-md-8">
             <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
+                    
+                    <small>READITx</small>
                 </h1>
            
 
@@ -43,7 +43,8 @@ if(isset($_POST['search'])){
 
     $count = mysqli_num_rows($search_query);
     if($count == 0){
-        echo "no result matches";
+        
+        header("Location: index.php");
     }else{
        
         

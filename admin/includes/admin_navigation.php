@@ -12,7 +12,17 @@
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
+
+        
+                <li><a>Online Users: <?php echo users_online(); ?> </a></li>
+              
+
+               
+
+
                 <li><a href="../index.php">HomePage</a></li>
+
+                
 
 
 
@@ -61,7 +71,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href='javascript:;' data-toggle='collapse' data-target='#posts_dropdown'><i class='fa fa-fw fa-desktop'></i> Posts <i class='fa fa-fw fa-caret-down'></i></a>
+                            <a href='javascript:;' data-toggle='collapse' data-target='#posts_dropdown'><i class='fa fa-comment-alt'></i> Posts <i class='fa fa-fw fa-caret-down'></i></a>
                             <ul id='posts_dropdown' class='collapse'>
                                 <li>
                                     <a href='posts.php'>View Posts</a>
@@ -74,11 +84,11 @@
                         
                        
                         <li>
-                            <a href=''./categories.php'><i class='fa fa-fw fa-page'></i> Categories </a>
+                            <a href=''./categories.php'><i class='fa fa-folder-open'></i> Categories </a>
                         </li>
                         
                         <li>
-                            <a href='./comments.php'><i class='fa fa-fw fa-desktop'></i> Comments </a>
+                            <a href='./comments.php'><i class='fa fa-comment-o'></i> Comments </a>
                         </li>
                         ";
 
@@ -98,8 +108,23 @@
                
 
                     <li>
-                        <a href="./profile.php"><i class="fa fa-fw fa-desktop"></i> Profile</a>
+                        <a href="./profile.php"><i class="fas fa-user-tie"></i> Profile</a>
                     </li>
+                    <?php
+                    
+                    
+                    if(isset($_SESSION['user_role'])){
+                        if($_SESSION['user_role'] !== 'admin'){
+                            echo  "<li>
+                                    <a href='posts.php?source=add_post'><i class='fa fa-comment-alt'></i>Add Post</a>
+                                  </li>";
+                           
+                        
+                        }
+                    }
+                    
+                    
+                    ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

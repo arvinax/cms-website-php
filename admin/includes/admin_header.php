@@ -4,6 +4,20 @@
 
 <?php include "../includes/db.php" ?>
 <?php include "./functions.php" ?>
+
+
+<?php 
+
+if(!isset($_SESSION['username'])){
+    header("Location: ../index.php");
+}elseif(isset($_SESSION['user_role'])){
+    if($_SESSION['user_role'] !== 'admin'){
+        header("Location: .../index.php");
+    }
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,5 +52,29 @@
     <![endif]-->
 
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+ 
+    <script type="text/javascript" src="js/scripts.js"></script>
 
+
+    <!-- ck editor -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            ClassicEditor
+        .create( document.querySelector( 'editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
+        });
+
+
+
+
+
+    </script>
+
+<!-- end of ecitor -->
 </head>

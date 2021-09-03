@@ -29,6 +29,7 @@
                             $user_lastname = $row['user_lastname'];
                             $user_email = $row['user_email'];
                             $user_role = $row['user_role'];
+                            $user_image = $row['user_image'];
                            
                            
                            
@@ -42,23 +43,20 @@
                                 echo "<td>$username         </td>";
                                 echo "<td>$user_email       </td>";
                                 echo "<td>$user_firstname   $user_lastname</td>";
-                                echo "<td>some image </td>";
-                                
+                               
+        
+                         
+                            echo "<td>
                             
+                            <img class='img-responsive'  
+                            style='vertical-align: middle;
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 50%; ' src='../images/$user_image'>
+                           
+                            
+                            </td>";
 
-                            //     $p_query = "SELECT * FROM posts WHERE post_id = {$comment_post_id}" ;
-                            //     $related_post_query = mysqli_query($connection, $p_query);
-                            
-                            //     while($row = mysqli_fetch_assoc($related_post_query)) {
-                            //        $the_post_image = $row['post_image'];
-                            //         echo "<td>
-                            //         <a href='../post.php?p_id=$comment_post_id'>
-                            //         <img class='img-responsive' width='100' src='../images/$the_post_image'>
-                            //         </a>
-                                    
-                            //         </td>";
-                                
-                            // }
                             echo "<td>$user_role         </td>";
                             if($user_role == 'admin'){
                                 echo "<td><a class='btn btn-warning' href='users.php?change_role=$user_id'>To subscriber</a></td>";

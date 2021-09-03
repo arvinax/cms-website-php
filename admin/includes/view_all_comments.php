@@ -1,7 +1,62 @@
-                
+<?php //include("delete_modal.php");
+
+if(isset($_POST['checkBoxArray'])) {
+
+    foreach($_POST['checkBoxArray'] as $commentValueId ){
+        $bulk_options = $_POST['bulk_options'];
+        switch($bulk_options) {
+            
+            case 'approved':
+                $query = "UPDATE comments SET comment_status = '{$bulk_options}' WHERE comment_id = {$commentValueId}  ";
+                $update_to_approved_status = mysqli_query($connection,$query);
+                confirmQuery($update_to_approved_status);
+                break;
+            case 'unapproved':
+                $query = "UPDATE comments SET comment_status = '{$bulk_options}' WHERE comment_id = {$commentValueId}  ";
+                $update_to_unapproved_status = mysqli_query($connection,$query);
+                confirmQuery($update_to_unapproved_status);
+                break;
+            case 'delete':
+                $query = "DELETE FROM comments WHERE comment_id = {$commentValueId}  ";
+                $update_to_delete_status = mysqli_query($connection,$query);
+                confirmQuery($update_to_delete_status);
+                break;
+          
+
+        }
+
+    }
+
+}
+
+
+?>
+               <form action="" method="post">
                         <table class="table table-hover responsive">
+
+
+
+        <div id="bulkOptionContainer" class="col-xs-4">
+            <select class="form-control" name="bulk_options" id="">
+                <option value="">Select Options</option>
+                <option value="approved">approve</option>
+                <option value="unapproved">unapprove</option>
+                <option value="delete">delete</option>
+              
+            </select>
+        </div>
+
+        <div class="col-xs-4">
+            <input type="submit" name="submit" class="btn btn-success" value="Apply">
+            <a class="btn btn-primary" href="posts.php?source=add_post">Add New</a>
+        </div>
+
+
+
+
                             <thead>
                                 <tr>
+                                <th><input type="checkbox" name="" id="selectAllBoxes"></th>
                                     <th>ID</th>
                                     
                                     <th>AUTHOR</th>
@@ -22,7 +77,7 @@
                             $query = "SELECT * FROM comments";
                             $select_comments = mysqli_query($connection,$query);  
 
-                           
+                           $approved_comments_counter = 0;
 
                             while($row = mysqli_fetch_assoc($select_comments)) {
                             $comment_id = $row['comment_id'];
@@ -34,9 +89,21 @@
                             $comment_date = $row['comment_date'];
 
             
-
+                                if($comment_status == 'approved'){
+                                    $approved_comments_counter++;
+                                }
 
                             echo "<tr class='responsive'>";
+                            ?>
+
+
+                            <td><input type="checkbox" name="checkBoxArray[]" class="checkBoxes" 
+                            value="<?php echo $comment_id; ?>" ></td>
+
+
+
+
+                            <?php
                                 echo "<td>$comment_id         </td>";
                                 echo "<td>$comment_author       </td>";
                                 echo "<td>$comment_email      </td>";
@@ -82,20 +149,19 @@
                           
                             }
                             $counter = mysqli_num_rows($select_comments);
-                            if($counter > 0){
-                                if($counter == 1){
-                                    echo "<h3>there is {$counter} comment in the box</h3> <hr>";
-                                    
-                                }else
-                                echo "<h3>there are {$counter} comments in the box</h3> <hr>";
-                            }else{
+                           
+                            if($counter == 0){
                                 echo "<h1>comment box is empty</h1> <hr>";
                             }
+                            echo "<h3>Approved comments: {$approved_comments_counter} of total {$counter}</h3> <hr>";
+                            
+                           
 
                         ?>
                            
                         </tbody>
                         </table>
+               </form>
 
                         <?php 
                             if(isset($_GET['deleted'])){

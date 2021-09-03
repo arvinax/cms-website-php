@@ -1,6 +1,15 @@
 <?php
 
 
+
+
+
+
+
+
+
+
+
 //===== DATABASE HELPER FUNCTIONS =====//
 
 function stmtConnection(){
@@ -207,15 +216,9 @@ function users_online() {
 
 
 
-    if(isset($_GET['onlineusers'])) {
+    
 
     global $connection;
-
-    if(!$connection) {
-
-        session_start();
-
-        include("../includes/db.php");
 
         $session = session_id();
         $time = time();
@@ -239,22 +242,17 @@ function users_online() {
             }
 
         $users_online_query =  mysqli_query($connection, "SELECT * FROM users_online WHERE time > '$time_out'");
-        echo $count_user = mysqli_num_rows($users_online_query);
+        return $count_user = mysqli_num_rows($users_online_query);
 
 
-    }
-
-
-
-
-
-
-    } // get request isset()
-
+   
 
 }
 
 users_online();
+
+
+
 
 
 

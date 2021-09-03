@@ -86,10 +86,11 @@
       
       
       
-    <!-- <div class="form-group">
+    <div class="form-group">
          <label for="post_image">IMAGE</label>
+         <img name="post_image" src="../images/<?php echo $user_image ?>" width='100' alt="">
           <input type="file"  name="image">
-      </div> -->
+      </div>
 
 
       <div class="form-group">

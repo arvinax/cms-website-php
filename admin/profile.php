@@ -36,13 +36,19 @@ if(isset($_SESSION['username'])){
         $new_user_password = $_POST['user_password'];
         $new_user_lastname = $_POST['user_lastname'];
         $new_user_email = $_POST['user_email'];
+
+        $new_user_image        = escape($_FILES['user_image']['name']);
+        $user_image_temp   = $_FILES['user_image']['tmp_name'];
+
+        move_uploaded_file($user_image_temp, "./images/$new_user_image" );
       
         $query  = "UPDATE users SET ";
         $query .= "username = '{$new_username}', ";
         $query .= "user_password = '{$new_user_password }', ";
         $query .= "user_firstname = '{$new_user_firstname}', ";
         $query .= "user_lastname = '{$new_user_lastname}', ";
-        $query .= "user_email = '{$new_user_email}' ";
+        $query .= "user_email = '{$new_user_email}', ";
+        $query .= "user_image = '{$new_user_image}' ";
         $query .= "WHERE username = '{$username}'";
     
         $update_profile_query = mysqli_query($connection, $query);
@@ -120,10 +126,10 @@ if(isset($_SESSION['username'])){
      
      
      
-   <!-- <div class="form-group">
-        <label for="post_image">IMAGE</label>
-         <input type="file"  name="image">
-     </div> -->
+   <div class="form-group">
+        <label for="user_image">IMAGE</label>
+         <input type="file"  name="user_image">
+     </div>
 
 
      <div class="form-group">

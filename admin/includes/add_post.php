@@ -1,15 +1,18 @@
             <h1 class="">
                 <small>Add new post</small>
             </h1>
+            
+
+
 <?php
    
 
    if(isset($_POST['create_post'])) {
    
             $post_title        = escape($_POST['title']);
-            $post_user         = escape($_POST['post_user']);
+            $post_user         = $_SESSION['username'];
             $post_category_id  = escape($_POST['post_category']);
-            $post_status       = escape($_POST['post_status']);
+            $post_status       = 'waiting...';
     
             $post_image        = escape($_FILES['image']['name']);
             $post_image_temp   = $_FILES['image']['tmp_name'];
@@ -20,8 +23,14 @@
             $post_date         = escape(date('d-m-y'));
 
 
+          
+
+
        
         move_uploaded_file($post_image_temp, "../images/$post_image" );
+    
+
+       
        
        
       $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date,post_image,post_content,post_tag, post_status) ";
@@ -35,8 +44,8 @@
       $the_post_id = mysqli_insert_id($connection);
 
 
-      echo "<p class='bg-success'>Post Created. <a href='../post.php?p_id={$the_post_id}'>View Post </a> or <a href='posts.php'>Edit More Posts</a></p>";
-       
+      echo "<p class='bg-success'>Post Created. Your post will be published after consideration. <a href='../post.php?p_id={$the_post_id}'>View Post </a> </p>";
+     
 
 
    }
@@ -53,6 +62,7 @@
          <label for="title">TITLE</label>
           <input type="text" class="form-control" name="title">
       </div>
+      <hr>
 
          <div class="form-group">
        <label for="category">CATEGORY</label>
@@ -81,37 +91,7 @@
         
        </select>
       
-      </div>
-
-
-       <div class="form-group">
-       <label for="users">USER</label>
-       <select name="post_user" id="">
-           
-<?php
-
-        $users_query = "SELECT * FROM users";
-        $select_users = mysqli_query($connection,$users_query);
-        
-        confirmQuery($select_users);
-
-
-        while($row = mysqli_fetch_assoc($select_users)) {
-        $user_id = $row['user_id'];
-        $username = $row['username'];
-            
-            
-            echo "<option value='{$username}'>{$username}</option>";
-         
-            
-        }
-
-?>
-           
-        
-       </select>
       
-      </div>
 
 
 
@@ -124,11 +104,7 @@
       
       
 
-       <div class="form-group">
-         <select name="post_status" id="">
-             <option value="draft">Post Status</option>
-         </select>
-      </div>
+       <hr>
       
       
       
@@ -136,15 +112,16 @@
          <label for="post_image">IMAGE</label>
           <input type="file"  name="image">
       </div>
+      <hr>
 
       <div class="form-group">
          <label for="post_tags">TAGS</label>
-          <input type="text" class="form-control" name="post_tags">
+          <input type="text" class="form-control"  name="post_tags">
       </div>
       
-      <div class="form-group">
+      <div class="form-group" >
          <label for="post_content">CONTENT</label>
-         <textarea class="form-control "name="post_content" id="" cols="30" rows="10">
+         <textarea class="form-control "name="post_content" id="editor" cols="30" rows="10">
          </textarea>
       </div>
       

@@ -15,24 +15,45 @@
 
     <!-- Page Content -->
     <div class="container">
-
+    
         <div class="row">
+        <div class="col-md-8">
+<?php
+ if(isset($_GET['category'])){
+    $post_category_id = $_GET['category'];
+}
+$query = "SELECT * FROM categories WHERE cat_id = {$post_category_id}";
+$select_cat = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($select_cat)){
+    $cat_name = $row['cat_title'];
+}
+
+
+
+
+
+?>
+
+
 
             <!-- Blog Entries Column -->
-            <div class="col-md-8">
-
-                <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1>
+            <h1 class="page-header">
+                
+                <?php if($_SESSION['username']){
+                    $the_name = $_SESSION['username'];
+                    echo "{$the_name} <small> you are browsing </small>{$cat_name}";
+                }else{
+                    echo "<small>browsing {$cat_name} </small>";
+                } ?>
+            </h1>
+           
 
                 <!-- First Blog Post -->
 
                 <?php 
-                if(isset($_GET['category'])){
-                    $post_category_id = $_GET['category'];
-                }
-                $query = "SELECT * FROM posts WHERE post_id =$post_category_id";
+               
+                $query = "SELECT * FROM posts WHERE post_category_id =$post_category_id";
                 $select_all_posts = mysqli_query($connection, $query);
                 // if($select_all_posts){
                 //     echo "selected";
@@ -99,6 +120,7 @@
                 </ul>
 
             </div>
+   
 
             <!-- Blog Sidebar Widgets Column -->
             <?php include "includes/sidebar.php" ?>

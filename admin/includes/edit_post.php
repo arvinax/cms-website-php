@@ -131,7 +131,7 @@
       
       
       <label for="post_image">IMAGE</label>
-    <div class="form-group">
+          <div class="form-group">
         
           <img name="post_image" src="../images/<?php echo $post_image ?>" width='100' alt="">
           <input type="file"  name="image">
